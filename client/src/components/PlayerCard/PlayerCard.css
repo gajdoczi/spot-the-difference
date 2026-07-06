@@ -1,11 +1,44 @@
 .player-card {
-    padding: 15px;
-    margin-top: 10px;
     background: #374151;
     border-radius: 10px;
-    font-size: 18px;
+    padding: 15px;
+    margin-top: 10px;
 }
 
 .player-card.host {
     border: 2px solid gold;
+}
+
+.player-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.player-name {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.player-bottom {
+    margin-top: 8px;
+    color: #9ca3af;
+}
+
+.ready {
+    color: #22c55e;
+    font-weight: bold;
+}
+
+.not-ready {
+    color: #d1d5db;
+}
+
+.player-card {
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.player-card:hover {
+    transform: scale(1.02);
 }
