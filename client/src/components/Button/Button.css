@@ -1,0 +1,29 @@
+.game-button{
+
+    width:340px;
+
+    padding:18px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#2563eb;
+
+    color:white;
+
+    font-size:22px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.game-button:hover{
+
+    transform:scale(1.05);
+
+    background:#1d4ed8;
+
+}
