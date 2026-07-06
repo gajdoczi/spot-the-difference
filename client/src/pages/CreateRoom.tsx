@@ -16,16 +16,20 @@ function CreateRoom() {
   const [playerName, setPlayerName] = useState("");
 
   function createRoom() {
-    socket.emit("create-room");
+  socket.emit("create-room", {
+    roomName,
+    playerName,
+    maxPlayers: 10,
+  });
 
-    socket.once("room-created", (room: Room) => {
-      console.log("Room received:", room);
+  socket.once("room-created", (room: Room) => {
+    console.log("Room received:", room);
 
-      setRoom(room);
+    setRoom(room);
 
-      navigate("/lobby");
-    });
-  }
+    navigate("/lobby");
+  });
+}
 
   return (
     <div className="create-room">
