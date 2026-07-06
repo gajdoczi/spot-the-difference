@@ -1,4 +1,5 @@
 import "./Lobby.css";
+import RoomCode from "../components/RoomCode/RoomCode";
 import PlayerCard from "../components/PlayerCard/PlayerCard";
 
 function Lobby() {
@@ -13,13 +14,7 @@ function Lobby() {
       <div className="lobby-card">
         <h1>Lobby</h1>
 
-        <div className="room-code">
-          <span>Szobakód</span>
-
-          <div className="code">
-            ABCD12
-          </div>
-        </div>
+        <RoomCode code="ABCD12" />
 
         <div className="players">
           <h2>Játékosok</h2>
