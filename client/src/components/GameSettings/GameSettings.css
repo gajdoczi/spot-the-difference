@@ -1,0 +1,21 @@
+.settings-card{
+    background:#374151;
+    border-radius:12px;
+    padding:20px;
+    margin-bottom:30px;
+}
+
+.settings-card h2{
+    margin-bottom:20px;
+}
+
+.setting{
+    display:flex;
+    justify-content:space-between;
+    padding:10px 0;
+    border-bottom:1px solid #4b5563;
+}
+
+.setting:last-child{
+    border-bottom:none;
+}

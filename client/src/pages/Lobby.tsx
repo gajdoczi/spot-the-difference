@@ -1,6 +1,7 @@
 import "./Lobby.css";
 import RoomCode from "../components/RoomCode/RoomCode";
 import PlayerCard from "../components/PlayerCard/PlayerCard";
+import GameSettings from "../components/GameSettings/GameSettings";
 
 function Lobby() {
   const players = [
@@ -15,6 +16,14 @@ function Lobby() {
         <h1>Lobby</h1>
 
         <RoomCode code="ABCD12" />
+
+        <GameSettings
+    maxPlayers={10}
+    teams={2}
+    teamMode="Custom"
+    rounds={10}
+    timeLimit={60}
+/>
 
         <div className="players">
           <h2>Játékosok</h2>
