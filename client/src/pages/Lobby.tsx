@@ -21,22 +21,28 @@ function Lobby() {
   },
 
   players: [
-    {
-      id: 1,
-      name: "Krisztián",
-      host: true,
-    },
-    {
-      id: 2,
-      name: "Peti",
-      host: false,
-    },
-    {
-      id: 3,
-      name: "Dani",
-      host: false,
-    },
-  ],
+  {
+    id: 1,
+    name: "Krisztián",
+    host: true,
+    ready: true,
+    team: 1,
+  },
+  {
+    id: 2,
+    name: "Peti",
+    host: false,
+    ready: false,
+    team: 1,
+  },
+  {
+    id: 3,
+    name: "Dani",
+    host: false,
+    ready: false,
+    team: 2,
+  },
+],
 });
 function addFakePlayer() {
   setRoom({
@@ -46,10 +52,12 @@ function addFakePlayer() {
       ...room.players,
 
       {
-        id: Date.now(),
-        name: "Új játékos",
-        host: false,
-      },
+  id: Date.now(),
+  name: "Új játékos",
+  host: false,
+  ready: false,
+  team: 1,
+}
     ],
   });
 }

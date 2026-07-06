@@ -1,8 +1,4 @@
-export type Player = {
-  id: number;
-  name: string;
-  host: boolean;
-};
+import type { Player } from "./Player";
 
 export type GameSettings = {
   maxPlayers: number;
