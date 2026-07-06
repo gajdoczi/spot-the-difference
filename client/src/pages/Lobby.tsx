@@ -1,11 +1,13 @@
+import { useState } from "react";
 import "./Lobby.css";
+
 import RoomCode from "../components/RoomCode/RoomCode";
 import PlayerCard from "../components/PlayerCard/PlayerCard";
 import GameSettings from "../components/GameSettings/GameSettings";
-import type { Room } from "../types/Room";
 
+import type { Room } from "../types/Room";
 function Lobby() {
-  const room: Room = {
+  const [room, setRoom] = useState<Room>({
   code: "ABCD12",
 
   spectators: 0,
@@ -35,7 +37,22 @@ function Lobby() {
       host: false,
     },
   ],
-};
+});
+function addFakePlayer() {
+  setRoom({
+    ...room,
+
+    players: [
+      ...room.players,
+
+      {
+        id: Date.now(),
+        name: "Új játékos",
+        host: false,
+      },
+    ],
+  });
+}
 
   return (
     <div className="lobby">
@@ -86,14 +103,18 @@ timeLimit={room.settings.timeLimit}
 </div>
 
         <div className="buttons">
-          <button>⚙ Beállítások</button>
+  <button>⚙ Beállítások</button>
 
-          <button>▶ Játék indítása</button>
+  <button>▶ Játék indítása</button>
 
-          <button className="leave">
-            🚪 Kilépés
-          </button>
-        </div>
+  <button className="leave">
+    🚪 Kilépés
+  </button>
+
+  <button onClick={addFakePlayer}>
+    + Teszt játékos
+  </button>
+</div>
       </div>
     </div>
   );
