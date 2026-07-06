@@ -1,7 +1,32 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
 import "./CreateRoom.css";
 
+import { socket } from "../socket/socket";
+import { useRoom } from "../contexts/RoomContext";
+
+import type { Room } from "../types/Room";
+
 function CreateRoom() {
+  const navigate = useNavigate();
+  const { setRoom } = useRoom();
+
+  const [roomName, setRoomName] = useState("");
+  const [playerName, setPlayerName] = useState("");
+
+  function createRoom() {
+    socket.emit("create-room");
+
+    socket.once("room-created", (room: Room) => {
+      console.log("Room received:", room);
+
+      setRoom(room);
+
+      navigate("/lobby");
+    });
+  }
+
   return (
     <div className="create-room">
       <div className="card">
@@ -10,11 +35,15 @@ function CreateRoom() {
         <input
           type="text"
           placeholder="Room Name"
+          value={roomName}
+          onChange={(e) => setRoomName(e.target.value)}
         />
 
         <input
           type="text"
           placeholder="Your Name"
+          value={playerName}
+          onChange={(e) => setPlayerName(e.target.value)}
         />
 
         <select>
@@ -23,7 +52,9 @@ function CreateRoom() {
           <option>20 Players</option>
         </select>
 
-        <button>Create</button>
+        <button onClick={createRoom}>
+          Create
+        </button>
 
         <Link to="/">
           <button className="back">

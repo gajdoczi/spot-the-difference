@@ -5,46 +5,51 @@ import RoomCode from "../components/RoomCode/RoomCode";
 import PlayerCard from "../components/PlayerCard/PlayerCard";
 import GameSettings from "../components/GameSettings/GameSettings";
 
+import { useRoom } from "../contexts/RoomContext";
 import type { Room } from "../types/Room";
 
 function Lobby() {
-  const [room, setRoom] = useState<Room>({
-    code: "ABCD12",
+  const { room: contextRoom } = useRoom();
 
-    spectators: 0,
+  const [room, setRoom] = useState<Room>(
+    contextRoom ?? {
+      code: "ABCD12",
 
-    settings: {
-      maxPlayers: 10,
-      teams: 2,
-      teamMode: "Custom",
-      rounds: 10,
-      timeLimit: 60,
-    },
+      spectators: 0,
 
-    players: [
-      {
-        id: 1,
-        name: "Krisztián",
-        host: true,
-        ready: true,
-        team: 1,
+      settings: {
+        maxPlayers: 10,
+        teams: 2,
+        teamMode: "Custom",
+        rounds: 10,
+        timeLimit: 60,
       },
-      {
-        id: 2,
-        name: "Peti",
-        host: false,
-        ready: false,
-        team: 1,
-      },
-      {
-        id: 3,
-        name: "Dani",
-        host: false,
-        ready: false,
-        team: 2,
-      },
-    ],
-  });
+
+      players: [
+        {
+          id: 1,
+          name: "Krisztián",
+          host: true,
+          ready: true,
+          team: 1,
+        },
+        {
+          id: 2,
+          name: "Peti",
+          host: false,
+          ready: false,
+          team: 1,
+        },
+        {
+          id: 3,
+          name: "Dani",
+          host: false,
+          ready: false,
+          team: 2,
+        },
+      ],
+    }
+  );
 
   function toggleReady(playerId: number) {
     setRoom({
@@ -116,8 +121,7 @@ function Lobby() {
 
         <div className="footer">
           <span>
-            Játékosok: {room.players.length} /{" "}
-            {room.settings.maxPlayers}
+            Játékosok: {room.players.length} / {room.settings.maxPlayers}
           </span>
 
           <span>Nézők: {room.spectators}</span>
