@@ -1,0 +1,11 @@
+.player-card {
+    padding: 15px;
+    margin-top: 10px;
+    background: #374151;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+.player-card.host {
+    border: 2px solid gold;
+}

@@ -1,59 +1,54 @@
 import "./Lobby.css";
+import PlayerCard from "../components/PlayerCard/PlayerCard";
 
 function Lobby() {
+  const players = [
+    { id: 1, name: "Krisztián", host: true },
+    { id: 2, name: "Peti", host: false },
+    { id: 3, name: "Dani", host: false }
+  ];
+
   return (
     <div className="lobby">
-
       <div className="lobby-card">
-
         <h1>Lobby</h1>
 
         <div className="room-code">
-
           <span>Szobakód</span>
 
           <div className="code">
             ABCD12
           </div>
-
         </div>
 
         <div className="players">
-
           <h2>Játékosok</h2>
 
-          <div className="player host">
-            👑 Krisztián (Host)
-          </div>
+          {players.map((player) => (
+  <PlayerCard
+    key={player.id}
+    name={player.name}
+    host={player.host}
+  />
+))}
 
-          <div className="player">
-            😀 Peti
-          </div>
-
-          <div className="player">
-            😀 Dani
-          </div>
-
-          <div className="player waiting">
-            Várakozás...
-          </div>
-
-          <div className="player waiting">
-            Várakozás...
-          </div>
-
+          {Array.from({ length: 10 - players.length }).map((_, index) => (
+            <div
+              key={`waiting-${index}`}
+              className="player waiting"
+            >
+              Várakozás...
+            </div>
+          ))}
         </div>
 
         <div className="footer">
-
-          <span>Játékosok: 3 / 10</span>
+          <span>Játékosok: {players.length} / 10</span>
 
           <span>Nézők: 0</span>
-
         </div>
 
         <div className="buttons">
-
           <button>⚙ Beállítások</button>
 
           <button>▶ Játék indítása</button>
@@ -61,11 +56,8 @@ function Lobby() {
           <button className="leave">
             🚪 Kilépés
           </button>
-
         </div>
-
       </div>
-
     </div>
   );
 }
